@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+@startuml
+
+class Tarjeta {
+    - nombreTitular: String
+    - numeroTarjeta: String
+    + obtenerNombreTitular(): String
+    + obtenerNumeroTarjeta(): String
+    # validarTarjeta(): boolean
+}
+
+class TarjetaDebito {
+    - saldoCuenta: double
+    + obtenerSaldoCuenta(): double
+    + cargarSaldo(monto: double): void
+    + realizarPago(monto: double): boolean
+    + obtenerNombreTitular(): String
+    + obtenerNumeroTarjeta(): String
+}
+
+class TarjetaCredito {
+    - limiteCredito: double
+    - saldoConsumido: double
+    - saldoImpago: double
+    - tasaInteres: double
+    - maxCuotas: int
+    + obtenerLimiteCredito(): double
+    + obtenerSaldoConsumido(): double
+    + obtenerSaldoImpago(): double
+    + obtenerTasaInteres(): double
+    + obtenerMaxCuotas(): int
+    + realizarCompra(monto: double, cuotas: int): boolean
+    + pagarResumen(resumen: double): boolean
+    + obtenerNombreTitular(): String
+    + obtenerNumeroTarjeta(): String
+}
+
+Tarjeta <-- TarjetaDebito : Hereda
+Tarjeta <-- TarjetaCredito : Hereda
+
+class Cliente{
+- numeroCliente: Integer
+- nombre: String
+- deuda: Double
++ Cliente(String numero, String nombre)
++ incrementarDeuda(Double valor)
++ pagarDeuda()
+}
+
+@enduml
+
+@enduml
